@@ -1,7 +1,12 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
 
 body {
-    background-color: #323437 !important;
+    background-color: #36393f !important;
+    min-height: 100vh; 
+}
+
+h1 {
+    color: #fff !important;
 }
 
 input {
@@ -9,12 +14,46 @@ input {
 }
 
 input[type="text"], textarea {
-    background-color: #ffffff70; 
-    color: #e1b714;
+    background-color: #202225; 
+    color: #dcddde;
     font-weight: bolder;
   }
 
 .secondary-color {
     background-color:  #ffffff10;
     /* background-color: #ffffff10; */
+}
+
+
+.search-bar {
+    margin-left: 5rem;
+    margin-right: 5rem;
+    box-sizing: border-box !important;
+    border-color: #36393f;
+}
+.search-bar::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white;
+    opacity: 0.25; /* Firefox */
+}  
+
+.flex-container {
+    display: flex;
+  }
+  
+.fill-width {
+    flex: 1 !important;
+}
+
+
+.answer-list {
+    margin-left: 10rem;
+    margin-right: 10rem;
+    width: 100%;
+    box-sizing: border-box !important;
+    background-color: #36393f !important;
+    color: #ffffff !important;
+}
+
+.white-text {
+    color: #ffffff !important;
 }

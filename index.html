@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,19 +8,43 @@
     <title>Mass Calculator</title>
 
     <link rel="stylesheet" href="index.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
+
 <body>
     <div class="container p-6 my-container">
         <div class="box mt-10 secondary-color">
-            <div class="container">
+            <div class="container pr-6 pl-6 pr-6">
                 <h1 class="title is-center has-text-centered">Mass Calculator</h1>
-                <input class="input is-primary " type="text" placeholder="Primary input">
+
+                <div class="flex-container">
+                    <input class="input search-bar fill-width" type="text" placeholder="Element name" onInput="handleSearch(this.value);">
+                </div>
+
+                <div class="flex-container">
+
+                        <table class="table table-striped fill-width answer-list">
+                            <tbody id="answer-list">
+                                <tr class="level">
+                                    <th class="white-text">Carbon</th>
+                                    <td>16 amu</td>
+                                    <td>
+                                        <button class="button is-success">+</button>
+                                        <button class="button is-danger">-</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                </div>
             </div>
         </div>
     </div>
-
-    bruh
+    <script src="data.js"></script>
+    <script src="index.js"></script>
 </body>
+
 </html>
 
 <!-- https://github.com/Bowserinator/Periodic-Table-JSON/blob/master/PeriodicTableJSON.json -->
