@@ -1,0 +1,20 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+
+body {
+    background-color: #323437 !important;
+}
+
+input {
+    background-color: #ffffff10;
+}
+
+input[type="text"], textarea {
+    background-color: #ffffff70; 
+    color: #e1b714;
+    font-weight: bolder;
+  }
+
+.secondary-color {
+    background-color:  #ffffff10;
+    /* background-color: #ffffff10; */
+}
