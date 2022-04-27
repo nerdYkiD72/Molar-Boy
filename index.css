@@ -53,6 +53,11 @@ input[type="text"], textarea {
     background-color: #36393f !important;
     color: #ffffff !important;
 }
+#answer-list {
+    max-height: 20px;
+    overflow: hidden;
+}
+
 
 .white-text {
     color: #ffffff !important;

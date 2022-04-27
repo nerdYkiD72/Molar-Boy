@@ -1,14 +1,71 @@
 const answerList = document.getElementById("answer-list");
 
 function handleSearch(searchQuery) {
-    var bruh = search(searchQuery);
-    for (let i = 0; i < bruh.length; i++) {
-        const element = bruh[i];
-        console.log(element.name);
+    addToAnswerList(search(searchQuery));
+}
+
+
+function clearAnswerList() {
+    var toRemove = []; // Make a list here to remove so you delete items after iterating through them
+
+    for (let i = 1; i < answerList.rows.length; i++) {
+        const element = answerList.rows[i];
+        toRemove.push(element.id);
+
+    }
+
+    toRemove.forEach((element) => {
+        document.getElementById(element).remove();
+    });
+}
+
+
+function addToAnswerList(results) {
+    clearAnswerList();
+    var listItems = [];
+    var doThing = true;
+
+    for (let i = 0; i < results.length; i++) {
+        const element = results[i];
+        for (let j = 0; j < listItems.length; j++) {
+            console.log("List item: " + listItems[j]);
+            console.log("element: " + element.name);
+            if  (listItems[j] == element.name) {
+                console.log("Skipped");
+                doThing = false; 
+                break;
+            }
+        }
+
+
+        if (doThing) {
+            listItems.push(element.name)
+
+
+            var newRow = answerList.insertRow(i);
+            var elName = newRow.insertCell(0);
+            var elWeight = newRow.insertCell(1);
+            var elButton = newRow.insertCell(2);
+    
+            newRow.classList.add("level");
+            newRow.setAttribute("id", element.name + "-row");
+            elName.setAttribute("id", element.name + "-Name");
+            elWeight.setAttribute("id", element.name + "-Weight");
+            elButton.setAttribute("id", element.name + "-Button");
+    
+            elName.innerHTML = element.name;
+            elWeight.innerHTML = "Weight: " + element.atomic_mass;
+            elButton.innerHTML = '<button class="button is-success">+</button><button class="button is-danger">-</button>'
+        }
+        doThing = true;
     }
 }
 
 
+
+
+
+// Search algorithum 
 var search_fields = ['name', 'symbol'] //key fields to search for in dataset
 
 function search(keyword) {
@@ -34,27 +91,7 @@ function search(keyword) {
         for (i = 0; i < results.length; i++) {
             results[i] = results[i].entry // remove relevance since it is no longer needed
         }
-    return results;
-
-    // for(var i in data){ // iterate through dataset
-    //     for(var u=0;u<search_fields.length;u++){ // iterate through each key in dataset
-
-    //         var rel = getRelevance(data[i][search_fields[u]],keyword) // check if there are matches
-
-    //         if(rel==0) // no matches...
-    //             continue // ...skip
-
-    //         results.push({relevance:rel,entry:data[i]}) // matches found, add to results and store relevance
-    //     }
-    // }
-
-    // results.sort(compareRelevance) // sort by relevance
-
-    // for(i=0;i<results.length;i++){
-    //     results[i] = results[i].entry // remove relevance since it is no longer needed
-    // }
-
-    
+    return results;    
 }
 
 function getRelevance(value, keyword) { // checks a given item to see if its simillar to the search term
