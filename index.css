@@ -51,7 +51,7 @@ textarea {
 
 .answer-list {
     margin-left: 10rem;
-    margin-right: 10rem;
+    margin-right: 15rem;
     width: 100%;
     box-sizing: border-box !important;
     background-color: #36393f !important;
@@ -148,4 +148,15 @@ body::-webkit-scrollbar-thumb {
     text-align: center;
     margin-left: 10rem;
     margin-right: 10rem;
+}
+
+.compound-mass {
+    background-color: #36393f !important;
+    border-radius: 2rem;
+    color: #ffffff;
+    font-size: 4rem;
+    text-align: center;
+    margin-left: 10rem;
+    margin-right: 10rem;
+    margin-top: 1rem;
 }

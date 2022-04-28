@@ -1,9 +1,35 @@
 const answerList = document.getElementById("answer-list");
 const compoundBox = document.getElementById("compound");
+const compoundBoxMass = document.getElementById("compound-mass");
+const inputBox = document.getElementById("inputBox");
 
 function handleSearch(searchQuery) {
     addToAnswerList(search(searchQuery));
 }
+
+inputBox.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") {
+        // Cancel the default action, if needed
+        event.preventDefault();
+        
+        if (answerList.rows.length >= 1) {
+            var splitId = answerList.rows[0].id.split("-");
+            var name = splitId[0];
+            
+            handleElementAdd(name);
+        }
+    } else if (event.key === "\\") {
+        event.preventDefault();
+
+        if (answerList.rows.length >= 1) {
+            var splitId = answerList.rows[0].id.split("-");
+            var name = splitId[0];
+            
+            handleElementRemove(name);
+        }
+    }
+});
+
 
 
 function clearAnswerList() {
@@ -56,6 +82,12 @@ function addToAnswerList(results) {
 
 var compound = {}
 
+function handleClearComound() {
+    compound = {};
+    showCompound(compound);
+}
+
+
 function handleElementAdd(name) {
     // compound.push(name);
     
@@ -94,6 +126,19 @@ function showCompound(compoundList) {
 
     console.log(output);
     compoundBox.innerHTML = output;
+    compoundBoxMass.innerHTML = `${getMolarMass(compoundList)} g/mol`;
+}
+
+function getMolarMass(compoundList) {
+    var keys = Object.keys(compoundList);
+    var mass = 0.0;
+
+    keys.forEach(element => {
+        mass += getMass(element) * compoundList[element];
+    });
+    mass = round(mass);
+    console.log(`The mass is: ${mass} g/mol`);
+    return mass;
 }
 
 function surroundWithSub(string) {
@@ -106,6 +151,19 @@ function getAbriviation(name) {
             return data.elements[i].symbol;
         }
     }
+}
+
+function getMass(name) {
+    for (let i = 0; i < data.elements.length; i++) {
+        if (data.elements[i].name == name) {
+            var atomicMass = data.elements[i].atomic_mass;
+            return round(atomicMass);
+        }
+    }
+}
+
+function round(value) {
+    return Math.round(value * 100) / 100
 }
 
 

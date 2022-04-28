@@ -19,7 +19,8 @@
                 <h1 class="title is-center has-text-centered">Mass Calculator</h1>
 
                 <div class="flex-container">
-                    <input class="input search-bar fill-width" type="text" placeholder="Element name" onInput="handleSearch(this.value);">
+                    <input class="input search-bar fill-width" id="inputBox" type="text" placeholder="Element name or abbreviation" onInput="handleSearch(this.value);">
+                    <button class="button is-danger" onClick="handleClearComound()">Clear Compound</button>
                 </div>
 
                 <div class="flex-container max-height">
@@ -35,8 +36,12 @@
         </div>
         <div class="box mt-10 secondary-color main-box">
             <div class="compound-box">
-                <h1 id="compound">Cu<sub>2</sub>PO<sub>4</sub></h1>
+                <h1 id="compound"></h1>
             </div>
+            <div class="compound-mass">
+                <h1 id="compound-mass"></h1>
+            </div>
+
         </div>
     </div>
     <script src="data.js"></script>
