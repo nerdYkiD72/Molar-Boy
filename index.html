@@ -14,7 +14,7 @@
 
 <body>
     <div class="container p-6 my-container">
-        <div class="box mt-10 secondary-color">
+        <div class="box mt-10 secondary-color main-box">
             <div class="container pr-6 pl-6 pr-6">
                 <h1 class="title is-center has-text-centered">Mass Calculator</h1>
 
@@ -22,22 +22,20 @@
                     <input class="input search-bar fill-width" type="text" placeholder="Element name" onInput="handleSearch(this.value);">
                 </div>
 
-                <div class="flex-container">
+                <div class="flex-container max-height">
 
-                        <table class="table table-striped fill-width answer-list">
-                            <tbody id="answer-list">
-                                <!-- <tr class="level">
-                                    <th class="white-text">Carbon</th>
-                                    <td>16 amu</td>
-                                    <td>
-                                        <button class="button is-success">+</button>
-                                        <button class="button is-danger">-</button>
-                                    </td>
-                                </tr> -->
-                            </tbody>
-                        </table>
+                    <table class="fill-width answer-list">
+                        <tbody id="answer-list">
+
+                        </tbody>
+                    </table>
 
                 </div>
+            </div>
+        </div>
+        <div class="box mt-10 secondary-color main-box">
+            <div class="compound-box">
+                <h1 id="compound">Cu<sub>2</sub>PO<sub>4</sub></h1>
             </div>
         </div>
     </div>

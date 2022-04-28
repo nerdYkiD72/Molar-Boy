@@ -1,4 +1,5 @@
 const answerList = document.getElementById("answer-list");
+const compoundBox = document.getElementById("compound");
 
 function handleSearch(searchQuery) {
     addToAnswerList(search(searchQuery));
@@ -8,11 +9,13 @@ function handleSearch(searchQuery) {
 function clearAnswerList() {
     var toRemove = []; // Make a list here to remove so you delete items after iterating through them
 
-    for (let i = 1; i < answerList.rows.length; i++) {
+    for (let i = 0; i < answerList.rows.length; i++) {
         const element = answerList.rows[i];
         toRemove.push(element.id);
 
     }
+
+    console.log(toRemove);
 
     toRemove.forEach((element) => {
         document.getElementById(element).remove();
@@ -23,22 +26,11 @@ function clearAnswerList() {
 function addToAnswerList(results) {
     clearAnswerList();
     var listItems = [];
-    var doThing = true;
 
-    for (let i = 0; i < results.length; i++) {
-        const element = results[i];
-        for (let j = 0; j < listItems.length; j++) {
-            console.log("List item: " + listItems[j]);
-            console.log("element: " + element.name);
-            if  (listItems[j] == element.name) {
-                console.log("Skipped");
-                doThing = false; 
-                break;
-            }
-        }
-
-
-        if (doThing) {
+    if (results) {
+        for (let i = 0; i < results.length; i++) {
+            const element = results[i];
+    
             listItems.push(element.name)
 
 
@@ -48,21 +40,73 @@ function addToAnswerList(results) {
             var elButton = newRow.insertCell(2);
     
             newRow.classList.add("level");
+            newRow.classList.add("a-row");
             newRow.setAttribute("id", element.name + "-row");
             elName.setAttribute("id", element.name + "-Name");
             elWeight.setAttribute("id", element.name + "-Weight");
             elButton.setAttribute("id", element.name + "-Button");
+            elButton.classList.add("button-colum");
     
             elName.innerHTML = element.name;
             elWeight.innerHTML = "Weight: " + element.atomic_mass;
-            elButton.innerHTML = '<button class="button is-success">+</button><button class="button is-danger">-</button>'
+            elButton.innerHTML = `<div class="button-container"><button class="button is-success add-remove-buttons" onClick="handleElementAdd('${element.name}')">+</button><button class="button is-danger add-remove-buttons" onClick="handleElementRemove('${element.name}')">-</button></div>`
         }
-        doThing = true;
     }
 }
 
+var compound = {}
 
+function handleElementAdd(name) {
+    // compound.push(name);
+    
+    if (!compound[name]) {
+        compound[name] = 1;
+    } else {
+        compound[name] += 1;
+    }
+    console.log(compound);
+    showCompound(compound);
+}
 
+function handleElementRemove(name) {
+    if (!compound[name]) {
+        console.warn("There is no element to delete.")
+    } else {
+        compound[name] -= 1;
+    }
+    console.log(compound);
+    showCompound(compound);
+}
+
+function showCompound(compoundList) {
+    var output = "";
+    var keys = Object.keys(compoundList);
+    console.log(compoundList);
+
+    keys.forEach(element => {
+        console.log(getAbriviation(element));
+        if (compoundList[element] < 2 && compoundList[element] > 0) {
+            output += `${getAbriviation(element)}`;
+        } else if (compoundList[element] >= 2) {
+            output += `${getAbriviation(element)}${surroundWithSub(compoundList[element])}`;
+        }
+    });
+
+    console.log(output);
+    compoundBox.innerHTML = output;
+}
+
+function surroundWithSub(string) {
+    return `<sub>${string}</sub>`
+}
+
+function getAbriviation(name) {
+    for (let i = 0; i < data.elements.length; i++) {
+        if (data.elements[i].name == name) {
+            return data.elements[i].symbol;
+        }
+    }
+}
 
 
 // Search algorithum 
@@ -73,20 +117,34 @@ function search(keyword) {
         return
 
     var results = []
+    var bruh = 0;
 
 
     for (let i = 0; i < data.elements.length; i++) { // iterate through dataset
+        // console.log(data.elements.length);
+        var lastItem;
         for (var u = 0; u < search_fields.length; u++) { // iterate through each key in dataset
+            console.log(`Last item: ${lastItem}`);
 
             var rel = getRelevance(data.elements[i][search_fields[u]], keyword) // check if there are matches
 
             if (rel == 0) // no matches...
                 continue // ...skip
 
-            results.push({ relevance: rel, entry: data.elements[i] }) // matches found, add to results and store relevance
+            
+
+            if (lastItem != data.elements[i].name) {
+                bruh++;
+                console.log("Adding " + data.elements[i] + " | the " + bruh + " number added");
+
+                results.push({ relevance: rel, entry: data.elements[i] }) // matches found, add to results and store relevance
+                lastItem = data.elements[i].name;
+            }
+            
         }
     }
         results.sort(compareRelevance) // sort by relevance
+        
 
         for (i = 0; i < results.length; i++) {
             results[i] = results[i].entry // remove relevance since it is no longer needed
