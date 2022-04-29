@@ -79,7 +79,11 @@ function addToAnswerList(results) {
             elButton.classList.add("button-colum");
     
             elName.innerHTML = element.name;
+            elName.classList.add("has-text-warning");
+            elName.classList.add("has-text-weight-bold-dark");
             elWeight.innerHTML = "Weight: " + round(element.atomic_mass);
+            elWeight.classList.add("is-hidden-mobile");
+            elWeight.classList.add("is-italic");
             elButton.innerHTML = `<div class="button-container"><button class="button is-success add-remove-buttons" onClick="handleElementAdd('${element.name}')">+</button><button class="button is-danger add-remove-buttons" onClick="handleElementRemove('${element.name}')">-</button></div>`
         }
     }
@@ -118,6 +122,7 @@ function handleElementRemove(name) {
 function showCompound(compoundList) {
     var output = ".";
     var keys = Object.keys(compoundList);
+    var totalElements = 0;
     console.log(compoundList);
 
     keys.forEach(element => {
@@ -125,6 +130,9 @@ function showCompound(compoundList) {
         if (output === ".") {
             output = "";
         }
+
+        totalElements += compoundList[element]
+
         if (compoundList[element] < 2 && compoundList[element] > 0) {
             output += `${getAbriviation(element)}`;
         } else if (compoundList[element] >= 2) {
@@ -132,10 +140,14 @@ function showCompound(compoundList) {
         }
     });
 
+
+
     console.log(output);
     if (output !== ".") {
         compoundBox.innerHTML = output;
-    } else {
+    }
+
+    if (totalElements < 1) {
         compoundBox.innerHTML = '<sub class="really-tiny">.</sub>'
     }
     

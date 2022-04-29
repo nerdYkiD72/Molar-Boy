@@ -55,7 +55,7 @@ textarea {
     box-sizing: border-box !important;
     background-color: #36393f !important;
     color: #ffffff !important;
-    
+    width: 100%;
     padding: 1rem;
 }
 
