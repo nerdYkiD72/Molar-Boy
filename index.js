@@ -8,6 +8,7 @@ function handleSearch(searchQuery) {
 }
 
 inputBox.addEventListener("keypress", function(event) {
+    console.log(event.key);
     if (event.key === "Enter") {
         // Cancel the default action, if needed
         event.preventDefault();
@@ -27,6 +28,10 @@ inputBox.addEventListener("keypress", function(event) {
             
             handleElementRemove(name);
         }
+    } else if (event.key === "esc") {
+        event.preventDefault();
+
+        console.log("bruhhh");
     }
 });
 
@@ -74,7 +79,7 @@ function addToAnswerList(results) {
             elButton.classList.add("button-colum");
     
             elName.innerHTML = element.name;
-            elWeight.innerHTML = "Weight: " + element.atomic_mass;
+            elWeight.innerHTML = "Weight: " + round(element.atomic_mass);
             elButton.innerHTML = `<div class="button-container"><button class="button is-success add-remove-buttons" onClick="handleElementAdd('${element.name}')">+</button><button class="button is-danger add-remove-buttons" onClick="handleElementRemove('${element.name}')">-</button></div>`
         }
     }
@@ -111,12 +116,15 @@ function handleElementRemove(name) {
 }
 
 function showCompound(compoundList) {
-    var output = "";
+    var output = ".";
     var keys = Object.keys(compoundList);
     console.log(compoundList);
 
     keys.forEach(element => {
         console.log(getAbriviation(element));
+        if (output === ".") {
+            output = "";
+        }
         if (compoundList[element] < 2 && compoundList[element] > 0) {
             output += `${getAbriviation(element)}`;
         } else if (compoundList[element] >= 2) {
@@ -125,9 +133,16 @@ function showCompound(compoundList) {
     });
 
     console.log(output);
-    compoundBox.innerHTML = output;
+    if (output !== ".") {
+        compoundBox.innerHTML = output;
+    } else {
+        compoundBox.innerHTML = '<sub class="really-tiny">.</sub>'
+    }
+    
     compoundBoxMass.innerHTML = `${getMolarMass(compoundList)} g/mol`;
 }
+
+showCompound(compound);
 
 function getMolarMass(compoundList) {
     var keys = Object.keys(compoundList);

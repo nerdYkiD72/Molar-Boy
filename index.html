@@ -13,36 +13,79 @@
 </head>
 
 <body>
-    <div class="container p-6 my-container">
-        <div class="box mt-10 secondary-color main-box">
-            <div class="container pr-6 pl-6 pr-6">
-                <h1 class="title is-center has-text-centered">Mass Calculator</h1>
+    <div class=" p-6 my-container">
+        <div class="columns">
+            <div class="column"></div>
+            <div class="column is-two-thirds">
 
-                <div class="flex-container">
-                    <input class="input search-bar fill-width" id="inputBox" type="text" placeholder="Element name or abbreviation" onInput="handleSearch(this.value);">
-                    <button class="button is-danger" onClick="handleClearComound()">Clear Compound</button>
+                <!--  -->
+
+
+                <!-- Top Box (Compound and Weight) -->
+                <div class="box mt-10 secondary-color main-box">
+                    <div class="columns">
+                        <div class="column"></div>  <!-- Spaceing -->
+
+                        <div class="column is-two-thirds">
+                            <div class="compound-box">
+                                <h1 id="compound"></h1>
+                            </div>
+
+                            <div class="compound-mass">
+                                <h1 id="compound-mass">g/mol</h1>
+                            </div>
+
+                        </div>
+
+
+                        <div class="column"></div>  <!-- Spaceing -->
+                    </div>
+
+                    
+        
                 </div>
 
-                <div class="flex-container max-height">
+                <!-- Bottom Box (Search and things) -->
+                <div class="box mt-10 secondary-color main-box">
+                    <div class="container pr-6 pl-6 pr-6">
+                        <h1 class="title is-center has-text-centered">Mass Calculator</h1>
+                        
+                        <div class="columns">
+                            <div class="column"></div>
 
-                    <table class="fill-width answer-list">
-                        <tbody id="answer-list">
+                            <div class="column is-four-fifths">
+                                <input class="input search-bar fill-width" id="inputBox" type="text" placeholder="Element name or abbreviation" onInput="handleSearch(this.value);">
+                                <table class="fill-width answer-list">
+                                    <tbody id="answer-list">
+            
+                                    </tbody>
+                                </table>
+                            </div>
 
-                        </tbody>
-                    </table>
-
+                            
+                            <div class="column">
+                                <button class="button is-danger" onClick="handleClearComound()">Clear Compound</button>
+                            </div>
+                        </div>
+                        <div class="flex-container">
+                            
+                        </div>
+        
+                        <div class="flex-container max-height">
+        
+                            
+        
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="box mt-10 secondary-color main-box">
-            <div class="compound-box">
-                <h1 id="compound"></h1>
-            </div>
-            <div class="compound-mass">
-                <h1 id="compound-mass"></h1>
-            </div>
+                
 
-        </div>
+            </div>
+            <div class="column"></div>
+
+        
+        
+        
     </div>
     <script src="data.js"></script>
     <script src="index.js"></script>

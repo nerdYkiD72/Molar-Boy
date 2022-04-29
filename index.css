@@ -27,8 +27,9 @@ textarea {
 
 
 .search-bar {
-    margin-left: 5rem;
-    margin-right: 5rem;
+    /* margin-left: 5rem;
+    margin-right: 5rem; */
+    /* width: 50%; */
     box-sizing: border-box !important;
     border-color: #36393f;
 }
@@ -50,9 +51,7 @@ textarea {
 
 
 .answer-list {
-    margin-left: 10rem;
-    margin-right: 15rem;
-    width: 100%;
+    margin: auto;
     box-sizing: border-box !important;
     background-color: #36393f !important;
     color: #ffffff !important;
@@ -146,17 +145,23 @@ body::-webkit-scrollbar-thumb {
     color: #ffffff;
     font-size: 4rem;
     text-align: center;
-    margin-left: 10rem;
-    margin-right: 10rem;
+    /* margin-left: 10rem;
+    margin-right: 10rem; */
+    resize: none;
 }
 
 .compound-mass {
     background-color: #36393f !important;
     border-radius: 2rem;
     color: #ffffff;
-    font-size: 4rem;
+    font-size: 2rem;
     text-align: center;
-    margin-left: 10rem;
-    margin-right: 10rem;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 1rem;
+}
+
+.really-tiny {
+    font-size: 1px;
+    background-color: #36393f !important;
 }
